@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show{
+            padding-left: 35%;
+        }
+        #show1{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="show1"></h1>
+    
+    <input type="checkbox" id="food1" name="Burger">
+    <label for="food1">Burger</label>
+    <br>
+    <input type="checkbox" id="food2" name="Pizza">
+    <label for="food2">Pizza</label>
+    <br>
+    <input type="checkbox" id="food3" name="Biryani">
+    <label for="food3">Biryani</label>
+    <br>
+    <input type="checkbox" id="food4" name="Paratha">
+    <label for="food4">Parada</label>
+    <br>
+    <button id="getorder" onclick="getorder()">Order Food</button>
+    
+
+    <img src="" id="show" alt="">
+</body>
+</html>
+<script>
+    let image=document.querySelector("#show")
+    let food=document.querySelector("#show1")
+    function getorder()
+    {
+        if(document.querySelector("#food1").checked)
+        {
+        let content_promise = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                if (document.querySelector("#food1").checked) {
+                      resolve('Content is loaded');
+                }  else {
+                   reject('Content failed to load');
+                }
+               }, 1000);
+             });
+
+             content_promise.then(function (value) {
+                image.src=null
+                food.innerHTML=null
+                food.innerHTML=document.querySelector("#food1").name
+                image.src="https://www.bing.com/th?id=OIP.oQxkLYqGK6CHpKzsHLwMFAHaFM&w=298&h=209&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
+              });
+        }
+        if(document.querySelector("#food2").checked)
+        {
+        let content_promise = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                if (document.querySelector("#food2").checked) {
+                      resolve('Content is loaded');
+                }  else {
+                   reject('Content failed to load');
+                }
+               }, 1000);
+             });
+
+             content_promise.then(function (value) {
+                image.src=null
+                food.innerHTML=null
+                food.innerHTML=document.querySelector("#food2").name
+                image.src="https://www.bing.com/th?id=OIP.MfhIfzrC6x6T1-szQkjtCgHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
+              });
+        }
+        if(document.querySelector("#food3").checked)
+        {
+        let content_promise = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                if (document.querySelector("#food3").checked) {
+                      resolve('Content is loaded');
+                }  else {
+                   reject('Content failed to load');
+                }
+               }, 1000);
+             });
+
+             content_promise.then(function (value) {
+                image.src=null
+                food.innerHTML=null
+                food.innerHTML=document.querySelector("#food3").name
+                image.src="https://www.bing.com/th?id=OIP.rUprSy-Tu_ru7GftGXSI-wHaE8&w=141&h=104&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
+              });
+        }
+        if(document.querySelector("#food4").checked)
+        {
+        let content_promise = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                if (document.querySelector("#food4").checked) {
+                      resolve('Content is loaded');
+                }  else {
+                   reject('Content failed to load');
+                }
+               }, 1000);
+             });
+
+             content_promise.then(function (value) {
+                image.src=null
+                food.innerHTML=null
+                food.innerHTML=document.querySelector("#food4").name
+                image.src="https://www.bing.com/th?id=OIP.1l-3Tewn6A-j4Og6i7u3nQHaDq&w=350&h=173&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
+              });
+        }
+    }
+
+
+</script>
