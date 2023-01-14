@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #here{
+
+            width: 80%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="here"></div>
+</body>
+</html>
+<script>
+    let data=JSON.parse(localStorage.getItem("showdiv")) || []
+    function appendhere(data)
+    {
+        data.map(function(el){
+        //let iframe=document.createElement("iframe")
+        // iframe.style.width="80%"
+        // iframe.style.height="500px"
+        //iframe.src="https://www.youtube.com/embed/"+el.id
+        let p=document.createElement("h4")
+        p.innerText="asheesh"
+        let div=document.createElement("div")
+        //div.style.margin="auto"
+        document.querySelector("#here").append(p)
+    })
+    }
+    appendhere()
+    
+</script>
