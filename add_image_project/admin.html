@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            text-align: center;
+            width: 250px;
+            height: 350px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 100px;
+        }
+        input,select,button{
+            padding-top: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+    <input type="text" id="name" placeholder="Write product name">
+    <br>
+    <input type="text" id="category" placeholder="Category Name">
+    <br>
+    <input type="url" id="image" placeholder="keep image URL">
+    <br>
+    <input type="number" id="price" placeholder="Write Product price">
+    <br>
+    <select name="" id="gender">
+        <option value="Select">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Kids">Kids</option>
+    </select>
+    <br>
+    <input type="checkbox" id="sold" name="sold">
+    
+    <label for="sold">Sold</label>
+    <br>
+    <button id="add" onclick="datahere()">Submit</button>
+    </form>
+    <button><a href="./products.html">Product Page</a></button>
+</body>
+</html>
+<script>
+    function data(a,b,c,d,e,f)
+    {
+        this.Product_name=a,
+        this.Category=b,
+        this.Image_url=c,
+        this.Price=d,
+        this.Gender=e,
+        this.Sold=f
+    }
+    let array1=JSON.parse(localStorage.getItem("Products")) || []
+    function datahere()
+    {
+        event.preventDefault()
+        let Product_name=document.querySelector("#name").value 
+        let Category=document.querySelector("#category").value 
+        let Image_url=document.querySelector("#image").value 
+        let Price=document.querySelector("#price").value 
+        let Gender=document.querySelector("#gender").value 
+        let Sold=document.querySelector("#sold").checked 
+    let a1= new data(Product_name,Category,Image_url,Price,Gender,Sold)
+    array1.push(a1)
+    localStorage.setItem("Products",JSON.stringify(array1))
+    //console.log(array1)
+    }
+</script>

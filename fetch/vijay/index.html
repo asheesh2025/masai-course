@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+    display: flex;
+    background-color: blueviolet;
+    padding: 5px;
+    font-size: 22px;
+    color: white;
+    margin-bottom: 25px;
+  }
+  div{
+    justify-content: space-around;
+  }
+  a{
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+  }
+  #items{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto;
+    row-gap: 50px;
+    column-gap: 25px;
+  }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div>Login</div>
+        <div>Signup</div>
+        <div>Products</div>
+        <div><a  id="go_to_cart" href="./cart.html">Cart</a></div>
+        <!--Add menu divs here-->
+        <!-- Link to cart.html with id go_to_cart  -->
+        <div id="item_count">
+          <!--Show total number of items added to cart here, do not add anything only Total count. Not even "Count - 5" but like this "5" -->
+        </div>
+      </div>
+  
+      <div id="items">
+        <!--Show grocery items here in grid format-->
+        <!-- add an add to cart button to each item, give it HTML id as 'add_to_cart' -->
+      </div>
+    
+</body>
+</html>
+<script>
+    // var let const
+    // Store cart items in local storage with key: "items"
+const url="https://grocery-masai.herokuapp.com/items"
+async function getData()
+{
+    try{
+        const url="https://grocery-masai.herokuapp.com/items"
+        let res=await fetch(url)
+        let data=await res.json()
+        appendData(data.data)
+        console.log(data.data)
+    }
+    catch(error)
+    {
+        console.log(error)
+    }
+}
+getData()
+
+function appendData(data1)
+{
+    data1.map(function(el,index){
+        let img=document.createElement("img")
+        img.src=el.image
+        img.style.width="100%"
+        img.style.height="60%"
+        let name1=document.createElement("h5")
+        name1.innerText=el.name
+        let price=document.createElement("p")
+        price.innerText=el.price
+        let btn=document.createElement("button")
+        btn.id="add_to_cart"
+        btn.innerText="Add to cart"
+        btn.addEventListener("click",function ()
+        {
+            added (el,index)
+        })
+        let div1=document.createElement("div")
+        div1.append(img,name1,price,btn)
+        div1.style.textAlign="center"
+        div1.style.border="2px solid blue"
+        document.querySelector("#items").append(div1)
+    })
+    let arr=JSON.parse(localStorage.getItem("items")) || []
+    function added(el,index)
+    {
+        //console.log(index,el)
+        let obj={
+             img2 : el.image,
+             name2 : el.name,
+             price2 : el.price
+        }
+        arr.push(obj)
+        localStorage.setItem("items", JSON.stringify(arr))
+        window.location.reload()
+        
+    }
+    let total=arr.length
+    document.querySelector("#item_count").innerText=total
+    
+
+}
+</script>

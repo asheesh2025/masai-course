@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 25px;
+            text-align: center;
+        }
+        #counter{
+            font-size: 40px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="counter" ></div>
+    <button ><a href="./admin.html">Admin Page</a></button>
+    <div id="show"></div>
+    
+</body>
+</html>
+<script>
+    let getdata=JSON.parse(localStorage.getItem("Products"))
+    getdata.map(function(el,index)
+    {
+        let name1=document.createElement("h1")
+        name1.innerText=el.Product_name
+        let b=document.createElement("h4")
+        b.innerText=el.Category
+        let c=document.createElement("img")
+        c.src=el.Image_url
+        let d=document.createElement("h4")
+        d.innerText=el.Price
+        let e=document.createElement("h4")
+        e.innerText=el.Gender
+        let f=document.createElement("button")
+        f.innerText="Remove"
+        f.id="remove"
+        f.addEventListener("click",function()
+        {
+            added(el,index)
+        })
+        let g=document.createElement("button")
+        g.innerText="Sold"
+        g.id="sold"
+        if(el.Sold==true)
+        {
+            g.style.backgroundColor="red"
+        }
+        else if(el.Sold==false)
+        {
+            g.style.backgroundColor="green"
+        }
+        let h=document.createElement("div")
+        h.className="product"
+        h.append(c,name1,b,d,e,f,g)
+        document.querySelector("#show").append(h)
+    })
+    function added(el,index)
+    {
+        let new1=getdata.splice(1,index)
+        localStorage.setItem("Products",JSON.stringify(new1))
+        window.location.reload()
+    }
+    document.querySelector("#counter").innerHTML=getdata.length
+</script>
