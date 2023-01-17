@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #form{
+            width: 250px;
+            height: 320px;
+            margin: auto;
+            text-align: center;
+            margin-top: 200px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        #form input,button,select{
+            padding:10px;
+            margin-top: 10px;
+            
+        }
+        button{
+            background-color: blue;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <a href="./show.html">Dashboard</a>
+        <h1 id="appendBatch"></h1>
+    </div>
+    
+    <form id="form">
+        <input type="text" id="name1" placeholder="Enter your Name">
+        <input type="text" id="course" placeholder="Enter your course">
+        <input type="text" id="unit" placeholder="Enter your unit">
+        <input type="url" id="image" placeholder="Enter your image url">
+        <input type="text" id="batch" placeholder="Enter Your batch">
+        <br>
+        <button id="submit" onclick="storeData()">Submit</button>
+    </form>
+
+</body>
+</html>
+<script>
+    let a=document.querySelector("#name1").value
+    let b=document.querySelector("#course").value
+    let c=document.querySelector("#unit").value
+    let d=document.querySelector("#image").value
+    let e=document.querySelector("#batch").value
+    let arr=JSON.parse(localStorage.getItem("store")) || []
+    function storeData()
+    {
+        event.preventDefault()
+        let obj={
+           a: document.querySelector("#name1").value,
+           b: document.querySelector("#course").value,
+           c: document.querySelector("#unit").value,
+           d: document.querySelector("#image").value,
+           e: document.querySelector("#batch").value
+        }
+        arr.push(obj)
+        localStorage.setItem("store",JSON.stringify(arr))
+        window.location.reload()
+    }
+   function calculate()
+   {
+    let arr=JSON.parse(localStorage.getItem("store")) || []
+    let obj={
+           a: document.querySelector("#name1").value,
+           b: document.querySelector("#course").value,
+           c: document.querySelector("#unit").value,
+           d: document.querySelector("#image").value,
+           e: document.querySelector("#batch").value
+        }
+    arr.push(obj)
+    let obj1={}
+    for(let i=0; i<arr.length-1; i++)
+    {
+        
+        if(obj1[arr[i].e]==undefined)
+        {
+            obj1[arr[i].e]=1
+        }
+        else
+        {
+            obj1[arr[i].e]=obj1[arr[i].e]+1
+        }
+    }
+     for(var key in obj1)
+     {
+  
+         document.querySelector("#appendBatch").append(key,"-",obj1[key] +" || ");
+  
+      }
+   }
+   calculate()
+
+
+</script>

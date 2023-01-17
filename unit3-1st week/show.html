@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show1{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            padding-left: 200px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="show1"></div>
+</body>
+</html>
+<script>
+    let showHere=JSON.parse(localStorage.getItem("store")) || []
+    showHere.map(function(el,index)
+    {
+        let a=document.createElement("h4")
+        a.innerText=el.a
+        let b=document.createElement("h4")
+        b.innerText=el.b
+        let c=document.createElement("h4")
+        c.innerText=el.c
+        let d=document.createElement("img")
+        d.src=el.d
+        d.style.width="85%"
+        d.style.height="40%"
+        let e=document.createElement("h4")
+        e.innerText=el.e
+        let f=document.createElement("div")
+        let g=document.createElement("button")
+        g.innerText="Remove"
+        g.addEventListener("click",function()
+        {
+            remove(el,index)
+        })
+        f.append(d,a,b,c,e,g)
+        document.querySelector("#show1").append(f)
+    })
+     function remove(el,index)
+    {
+        let new1=showHere.splice(index,1)
+        localStorage.setItem("store",JSON.stringify(showHere))
+        localStorage.setItem("trash",JSON.stringify(new1))
+        window.location.reload()
+    }
+    
+</script>
