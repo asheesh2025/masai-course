@@ -1,3 +1,3 @@
 # masai-course
 
-I created this project at Masai School.
+I created this all project at Masai School.
